@@ -1,0 +1,98 @@
+DECLARE @OrderId INT, @Total DECIMAL(10, 2)
+DECLARE OrderCursor CURSOR FOR
+SELECT OrderId, TotalAmount
+FROM Orders
+
+
+OPEN OrderCursor
+FETCH NEXT FROM OrderCursor INTO @OrderId, @Total
+
+
+WHILE @@FETCH_STATUS = 0
+BEGIN
+    UPDATE OrderSummary
+    SET TotalSales = TotalSales + @Total
+    WHERE OrderId = @OrderId
+
+
+    FETCH NEXT FROM OrderCursor INTO @OrderId, @Total
+END
+
+
+CLOSE OrderCursor
+DEALLOCATE OrderCursor
+
+
+--Рефакторинг:
+
+
+UPDATE os
+SET os.TotalSales = os.TotalSales + o.TotalAmount
+FROM OrderSummary os
+INNER JOIN Orders o ON os.OrderId = o.OrderId
+
+
+
+
+--Приклад 2: Нормалізація даних
+
+
+--Некоректний код:
+
+
+CREATE TABLE Orders (
+    OrderId INT PRIMARY KEY,
+    CustomerId INT,
+    Product1 VARCHAR(50),
+    Product2 VARCHAR(50),
+    Product3 VARCHAR(50)
+)
+
+
+SELECT Product1, Product2, Product3
+FROM Orders
+WHERE CustomerId = 123
+
+
+--Рефакторинг:
+
+
+CREATE TABLE Orders (
+    OrderId INT PRIMARY KEY,
+    CustomerId INT
+)
+
+
+CREATE TABLE OrderDetails (
+    OrderDetailId INT PRIMARY KEY,
+    OrderId INT,
+    Product VARCHAR(50),
+    FOREIGN KEY (OrderId) REFERENCES Orders(OrderId)
+)
+
+
+SELECT od.Product
+FROM Orders o
+JOIN OrderDetails od ON o.OrderId = od.OrderId
+WHERE o.CustomerId = 123
+
+
+
+
+--Приклад 3: Неоптимальний фільтр із використанням функцій
+
+
+--Некоректний код:
+
+
+SELECT *
+FROM Customers
+WHERE YEAR(BirthDate) = 1990
+
+
+--Рефакторинг:
+
+
+SELECT *
+FROM Customers
+WHERE BirthDate >= '1990-01-01' AND BirthDate < '1991-01-01'

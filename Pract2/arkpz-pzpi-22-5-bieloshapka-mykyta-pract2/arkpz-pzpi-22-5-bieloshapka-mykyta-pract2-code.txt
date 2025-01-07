@@ -1,0 +1,98 @@
+public void ProcessOrder(Order order)
+{
+    Console.WriteLine("Processing order...");
+    if (order.TotalPrice > 1000)
+    {
+        Console.WriteLine("Applying discount...");
+        order.TotalPrice *= 0.9;
+    }
+
+
+    Console.WriteLine("Saving order to database...");
+    // Симуляція збереження замовлення
+    SaveOrder(order);
+    Console.WriteLine("Sending notification to customer...");
+    // Симуляція надсилання повідомлення
+    SendNotification(order.CustomerEmail);
+}
+
+
+//Код після рефакторингу
+public void ProcessOrder(Order order)
+{
+    ApplyDiscountIfNecessary(order);
+    SaveOrder(order);
+    NotifyCustomer(order.CustomerEmail);
+}
+
+
+private void ApplyDiscountIfNecessary(Order order)
+{
+    if (order.TotalPrice > 1000)
+    {
+        Console.WriteLine("Applying discount...");
+        order.TotalPrice *= 0.9;
+    }
+}
+
+
+private void SaveOrder(Order order)
+{
+    Console.WriteLine("Saving order to database...");
+    // Симуляція збереження замовлення
+}
+
+
+private void NotifyCustomer(string customerEmail)
+{
+    Console.WriteLine("Sending notification to customer...");
+    // Симуляція надсилання повідомлення
+}
+
+
+
+//Код до рефакторингу
+public double GetDiscountedPrice(Order order)
+{
+    double basePrice = order.TotalPrice;
+    double discount = basePrice > 1000 ? 0.1 : 0.0;
+    return basePrice - (basePrice * discount);
+}
+
+
+//Код після рефакторингу
+public double GetDiscountedPrice(Order order)
+{
+    return order.TotalPrice - (order.TotalPrice * GetDiscount(order));
+}
+
+
+private double GetDiscount(Order order)
+{
+    return order.TotalPrice > 1000 ? 0.1 : 0.0;
+}
+
+
+//Код до рефакторингу
+public void GenerateInvoice(string customerName, string customerEmail, double orderTotal, DateTime orderDate)
+{
+    Console.WriteLine($"Invoice for {customerName} ({customerEmail})");
+    Console.WriteLine($"Total: {orderTotal}, Date: {orderDate}");
+}
+
+
+//Код після рефакторингу
+public void GenerateInvoice(OrderDetails orderDetails)
+{
+    Console.WriteLine($"Invoice for {orderDetails.CustomerName} ({orderDetails.CustomerEmail})");
+    Console.WriteLine($"Total: {orderDetails.OrderTotal}, Date: {orderDetails.OrderDate}");
+}
+
+
+public class OrderDetails
+{
+    public string CustomerName { get; set; }
+    public string CustomerEmail { get; set; }
+    public double OrderTotal { get; set; }
+    public DateTime OrderDate { get; set; }
+}

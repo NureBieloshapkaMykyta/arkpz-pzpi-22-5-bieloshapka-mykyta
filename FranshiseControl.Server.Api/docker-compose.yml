@@ -1,0 +1,6 @@
+services:
+  franshisecontrol.server.api:
+    image: ${DOCKER_REGISTRY-}franshisecontrolserverapi
+    build:
+      context: .
+      dockerfile: FranshiseControl.Server.Api/Dockerfile
