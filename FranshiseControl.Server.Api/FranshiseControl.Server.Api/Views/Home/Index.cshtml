@@ -1,0 +1,68 @@
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to Franchise Control System</h1>
+    <p>Manage your franchise business efficiently with our comprehensive management system.</p>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Establishments</h5>
+                <p class="card-text">Manage your franchise establishments and locations.</p>
+                <a asp-controller="Establishment" asp-action="Index" class="btn btn-primary">View Establishments</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Products</h5>
+                <p class="card-text">Manage your product catalog and inventory.</p>
+                <a asp-controller="Product" asp-action="Index" class="btn btn-primary">View Products</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Sales</h5>
+                <p class="card-text">Track and analyze your sales performance.</p>
+                <a asp-controller="Sale" asp-action="Index" class="btn btn-primary">View Sales</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Marketing</h5>
+                <p class="card-text">Plan and track marketing campaigns.</p>
+                <a asp-controller="Marketing" asp-action="Index" class="btn btn-primary">View Marketing</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Suppliers</h5>
+                <p class="card-text">Manage your supplier relationships.</p>
+                <a asp-controller="Supplier" asp-action="Index" class="btn btn-primary">View Suppliers</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Standards</h5>
+                <p class="card-text">Monitor compliance with franchise standards.</p>
+                <a asp-controller="Standart" asp-action="Index" class="btn btn-primary">View Standards</a>
+            </div>
+        </div>
+    </div>
+</div> 

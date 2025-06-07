@@ -9,4 +9,5 @@ namespace Core;
 
 public class AppUser : IdentityUser<long>
 {
+    public string? PhotoUrl { get; set; }
 }

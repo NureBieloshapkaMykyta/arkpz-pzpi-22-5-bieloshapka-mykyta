@@ -5,8 +5,8 @@ namespace DataAccess;
 
 public static class RegisterLayerExtension
 {
-    public static void AddDataAccess(this IServiceCollection services, IConfiguration configuration) 
+    public static void AddDataAccess(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddNpgsql<AppDbContext>(configuration.GetConnectionString("MasterDatabase"));
+        services.AddSqlServer<AppDbContext>(configuration.GetConnectionString("MasterDatabase"), options => options.EnableRetryOnFailure());
     }
 }

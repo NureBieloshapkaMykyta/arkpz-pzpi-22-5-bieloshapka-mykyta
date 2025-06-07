@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FranchiseControlMobile</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="franchises">Franchises</string>
+    <string name="products">Products</string>
+    <string name="analytics">Analytics</string>
+    <string name="add_franchise">Add Franchise</string>
+    <string name="add_product">Add Product</string>
+</resources> 
