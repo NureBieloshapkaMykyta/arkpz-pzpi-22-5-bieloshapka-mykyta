@@ -134,3 +134,7 @@ _NCrunch*
 /.vs
 /FranshiseControl.Server.Api/.vs/FranshiseControl.Server.Api
 /FranshiseControl.Server.Api/.vs/ProjectEvaluation
+/FranshiseControl.Server.Api/FranshiseControl.Server.Api/wwwroot/css/Content
+/FranshiseControl.Server.Api/FranshiseControl.Server.Api/wwwroot/css/Scripts
+/FranshiseControl.Server.Api/FranshiseControl.Server.Api/wwwroot/js/Scripts
+/Azure-functions/RewiewImages/.vs
